@@ -2,7 +2,8 @@ FROM innovanon/xorg-base:latest as builder-01
 COPY --from=innovanon/util-macros /tmp/util-macros.txz /tmp/
 RUN cat   /tmp/*.txz  \
   | tar Jxf - -i -C / \
- && rm -v /tmp/*.txz
+ && rm -v /tmp/*.txz  \
+ && ldconfig
 
 # TODO
 RUN apt update && apt full-upgrade && apt install meson
@@ -21,6 +22,7 @@ RUN sleep 31                                                                    
  && cd ../..                                                                                \
  && rm -rf                                                                    xorgproto     \
  && cd           /tmp/xorgproto                                                             \
+ && strip.sh .                                                                              \
  && tar acf        ../xorgproto.txz .                                                       \
  && cd ..                                                                                   \
  && rm -rf       /tmp/xorgproto
