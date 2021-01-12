@@ -42,7 +42,8 @@ jobs:
               curl --location --request POST \
                 'https://circleci.com/api/v2/project/github/InnovAnon-Inc/libxau/pipeline' \
                 --header 'Content-Type: application/json' \
-                -u "${LIBXAU_API_TOKEN}:"
+                --data '{"branch":"master"}' \
+                -u "${API_TOKEN}:"
             fi
 
 
