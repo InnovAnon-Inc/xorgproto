@@ -1,4 +1,5 @@
 FROM innovanon/xorg-base:latest as builder-01
+USER root
 COPY --from=innovanon/util-macros /tmp/util-macros.txz /tmp/
 RUN extract.sh
 
@@ -20,7 +21,7 @@ RUN sleep 31                                                                    
  && rm -rf                                                                    xorgproto     \
  && cd           /tmp/xorgproto                                                             \
  && strip.sh .                                                                              \
- && tar acf        ../xorgproto.txz .                                                       \
+ && tar  pacf        ../xorgproto.txz .                                                       \
  && cd ..                                                                                   \
  && rm -rf       /tmp/xorgproto
 
